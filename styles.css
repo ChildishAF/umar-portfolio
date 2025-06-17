@@ -110,11 +110,13 @@ a {
     .nav-links {
         position: absolute;
         top: 60px;
+        left: 0;
         right: 0;
         background: var(--nav-bg);
         flex-direction: column;
-        width: 200px;
+        width: 100%;
         display: none;
+        z-index: 999;
     }
 
     .nav-links.open {
@@ -122,10 +124,15 @@ a {
     }
 
     .nav-links li {
-        text-align: right;
-        margin: 0;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .nav-links li a {
+        width: 100%;
     }
 }
+
 
 
 /* Theme Toggle Button */
@@ -166,6 +173,7 @@ body.dark {
     align-items: center;
     padding: 2rem;
     text-align: center;
+    padding-top: 80px; 
 }
 
 #welcome-section h1 {
