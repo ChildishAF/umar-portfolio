@@ -14,13 +14,22 @@
     <button id="theme-toggle">Dark Mode</button>
 
     <!-- Navbar -->
-    <nav id="navbar">
-        <ul>
-            <li><a href="#welcome-section">Welcome</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="https://github.com/ChildishAF" id="profile-link" target="_blank">GitHub</a></li>
-        </ul>
+    
+   <nav id="navbar">
+         <div class="nav-container">
+            <div class="logo">Umar</div>
+              <div class="menu-toggle" id="menu-toggle">
+      ☰
+            </div>
+              <ul class="nav-links" id="nav-links">
+                 <li><a href="#welcome-section">Welcome</a></li>
+                 <li><a href="#projects">Projects</a></li>
+                 <li><a href="#contact">Contact</a></li>
+                 <li><a href="https://github.com/ChildishAF" target="_blank">GitHub</a></li>
+              </ul>
+         </div>
+    </nav>
+
     </nav>
 
     <!-- Welcome Section -->
@@ -81,7 +90,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
        <script type="text/javascript">
            (function(){
-               emailjs.init("XM3Akj93n86nQw711"); 
+               emailjs.init("VY1XFCd7fOjKc2Uhy"); 
               })();
     </script>
 
@@ -96,8 +105,16 @@
             document.getElementById('form-status').textContent = "Failed to send message. Please try again.";
             console.log('FAILED...', error);
              });
-});
-</script>
+         });
+   </script>
+   <script>
+         const menuToggle = document.getElementById('menu-toggle');
+         const navLinks = document.getElementById('nav-links');
+
+         menuToggle.addEventListener('click', () => {
+         navLinks.classList.toggle('open');
+             });
+    </script>
 
 
 </body>
