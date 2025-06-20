@@ -13,7 +13,7 @@
   <script>
     // Initialize EmailJS with your user ID
     (function() {
-      
+      // IMPORTANT: Replace "VY1XFCd7fOjKc2Uhy" with your actual EmailJS User ID
       emailjs.init("VY1XFCd7fOjKc2Uhy");
     })();
 
@@ -76,6 +76,16 @@
       animation: slideIn 0.3s ease-out forwards; /* Apply slide-in animation */
     }
 
+    /* Base styles for desktop navigation items */
+    .nav-item {
+      @apply text-white text-lg px-4 py-2 rounded-md font-medium transition-all duration-300 ease-in-out;
+    }
+
+    /* Hover effects for desktop navigation items */
+    .nav-item:hover {
+      @apply bg-nav-hover-light dark:bg-nav-hover-dark;
+    }
+
     /* Hide scrollbar for aesthetic purposes */
     ::-webkit-scrollbar {
       display: none;
@@ -98,11 +108,11 @@
   <nav id="navbar" class="fixed top-0 w-full bg-nav-light text-white shadow-lg py-4 z-40
                         dark:bg-nav-dark">
     <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
-      <div class="logo text-2xl font-bold tracking-wide">Umar</div>
+      <div class="logo text-2xl md:text-3xl font-bold tracking-wide">Umar</div>
       <!-- Mobile Menu Toggle Button -->
       <div class="menu-toggle text-3xl cursor-pointer md:hidden" id="menu-toggle">☰</div>
       <!-- Navigation Links (Desktop) -->
-      <ul class="nav-links hidden md:flex space-x-6">
+      <ul class="nav-links hidden md:flex space-x-6 lg:space-x-8">
         <li><a href="#welcome-section" class="nav-item">Welcome</a></li>
         <li><a href="#projects" class="nav-item">Projects</a></li>
         <li><a href="#contact" class="nav-item">Contact</a></li>
@@ -124,10 +134,10 @@
                                        bg-gradient-to-r from-welcome-gradient-light-start to-welcome-gradient-light-end
                                        dark:from-welcome-gradient-dark-start dark:to-welcome-gradient-dark-end"
                                        data-aos="fade-up">
-    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 text-primary-light dark:text-primary-dark leading-tight">
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-4 text-primary-light dark:text-primary-dark leading-tight">
       Welcome to My Portfolio
     </h1>
-    <p class="text-xl sm:text-2xl lg:text-3xl italic opacity-90 text-text-light dark:text-text-dark max-w-2xl">
+    <p class="text-xl sm:text-2xl lg:text-3xl xl:text-4xl italic opacity-90 text-text-light dark:text-text-dark max-w-3xl lg:max-w-4xl">
       I'm Umar, a passionate Software Engineer
     </p>
   </section>
@@ -135,13 +145,13 @@
   <!-- Projects Section -->
   <section id="projects" class="py-20 px-4 bg-section-bg-light border-b border-border-light
                                 dark:bg-section-bg-dark dark:border-border-dark" data-aos="fade-up">
-    <h2 class="text-4xl sm:text-5xl font-bold mb-12 text-primary-light dark:text-primary-dark">My Projects</h2>
-    <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-12 text-primary-light dark:text-primary-dark text-center">My Projects</h2>
+    <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl xl:max-w-7xl mx-auto">
       <!-- Project Tile 1 -->
       <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
                   hover:scale-105 transition-transform duration-300 ease-in-out
                   dark:bg-project-bg-dark dark:border-border-dark">
-        <img src="https://placehold.co/400x250/E8D2FF/3F1A6A?text=Project+1" alt="Project 1"
+        <img src="https://placehold.co/400x250/E8D2FF/3F1A6A?text=Web+Application" alt="Project 1"
              class="w-full h-48 object-cover rounded-lg mb-4 border border-border-light dark:border-border-dark"/>
         <h3 class="text-2xl font-semibold mb-2 text-primary-light dark:text-primary-dark">Project 1: Web Application</h3>
         <p class="text-text-light dark:text-text-dark mb-4 text-base">
@@ -159,7 +169,7 @@
       <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
                   hover:scale-105 transition-transform duration-300 ease-in-out
                   dark:bg-project-bg-dark dark:border-border-dark">
-        <img src="https://placehold.co/400x250/D2FFD2/1A6A1A?text=Project+2" alt="Project 2"
+        <img src="https://placehold.co/400x250/D2FFD2/1A6A1A?text=Mobile+App" alt="Project 2"
              class="w-full h-48 object-cover rounded-lg mb-4 border border-border-light dark:border-border-dark"/>
         <h3 class="text-2xl font-semibold mb-2 text-primary-light dark:text-primary-dark">Project 2: Mobile App</h3>
         <p class="text-text-light dark:text-text-dark mb-4 text-base">
@@ -177,7 +187,7 @@
       <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
                   hover:scale-105 transition-transform duration-300 ease-in-out
                   dark:bg-project-bg-dark dark:border-border-dark">
-        <img src="https://placehold.co/400x250/FFD2E8/6A1A3F?text=Project+3" alt="Project 3"
+        <img src="https://placehold.co/400x250/FFD2E8/6A1A3F?text=Data+Tool" alt="Project 3"
              class="w-full h-48 object-cover rounded-lg mb-4 border border-border-light dark:border-border-dark"/>
         <h3 class="text-2xl font-semibold mb-2 text-primary-light dark:text-primary-dark">Project 3: Data Analysis Tool</h3>
         <p class="text-text-light dark:text-text-dark mb-4 text-base">
@@ -197,8 +207,8 @@
   <!-- Contact Section -->
   <section id="contact" class="py-20 px-4 bg-section-bg-light
                                dark:bg-section-bg-dark" data-aos="fade-up">
-    <h2 class="text-4xl sm:text-5xl font-bold mb-12 text-primary-light dark:text-primary-dark">Contact Me</h2>
-    <form id="contact-form" class="flex flex-col max-w-xl mx-auto p-8 rounded-xl shadow-lg border border-border-light
+    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-12 text-primary-light dark:text-primary-dark text-center">Contact Me</h2>
+    <form id="contact-form" class="flex flex-col max-w-xl lg:max-w-2xl mx-auto p-8 rounded-xl shadow-lg border border-border-light
                                    bg-form-bg-light dark:bg-form-bg-dark dark:border-border-dark">
       <input type="text" name="name" placeholder="Your Name" required
              class="p-4 mb-5 border border-border-light rounded-md text-text-light bg-input-bg-light focus:outline-none
@@ -293,8 +303,8 @@
       formStatus.classList.add('text-primary-light', 'dark:text-primary-dark'); // Default color
 
       // Send form data using EmailJS
-      
-      emailjs.sendForm('service_5rqjzl5', 'template_jzb6e1x', this)
+      // IMPORTANT: Replace "YOUR_EMAILJS_TEMPLATE_ID" with your actual EmailJS Template ID
+      emailjs.sendForm('service_5rqjzl5', 'YOUR_EMAILJS_TEMPLATE_ID', this)
         .then(() => {
           formStatus.textContent = "Message sent successfully! Thank you for reaching out.";
           formStatus.classList.remove('text-primary-light', 'dark:text-primary-dark');
