@@ -1,121 +1,312 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umar's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- AOS CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Umar's Portfolio</title>
+  <!-- Tailwind CSS CDN for modern styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS for scroll animations -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <!-- EmailJS for contact form functionality -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS with your user ID
+    (function() {
+      
+      emailjs.init("VY1XFCd7fOjKc2Uhy");
+    })();
+
+    // Configure Tailwind CSS to use Inter font and custom colors
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'], // Set Inter as the default font
+          },
+          colors: {
+            // Define custom color palette for light and dark modes
+            'primary-light': '#6a0dad', // Purple for accents
+            'primary-dark': '#8c52ff',
+            'bg-light': '#fdfdfd', // Light background
+            'bg-dark': '#1a1a2e', // Dark background
+            'text-light': '#222', // Dark text
+            'text-dark': '#e0e0e0', // Light text
+            'nav-light': '#6a0dad', // Navbar background (light)
+            'nav-dark': '#2e0050', // Navbar background (dark)
+            'nav-hover-light': '#4b0071', // Navbar hover (light)
+            'nav-hover-dark': '#4a007b', // Navbar hover (dark)
+            'welcome-gradient-light-start': '#f4f4f4',
+            'welcome-gradient-light-end': '#e8e8f1',
+            'welcome-gradient-dark-start': '#2c004a',
+            'welcome-gradient-dark-end': '#1a002b',
+            'section-bg-light': '#fff',
+            'section-bg-dark': '#250040',
+            'project-bg-light': '#f9f9f9',
+            'project-bg-dark': '#3c0060',
+            'border-light': '#ddd',
+            'border-dark': '#550088',
+            'form-bg-light': '#f5f5f5',
+            'form-bg-dark': '#300050',
+            'input-bg-light': '#fff',
+            'input-bg-dark': '#400060',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom styles for theme-toggle button to handle fixed position and z-index */
+    #theme-toggle {
+      z-index: 1001; /* Ensure it stays on top */
+    }
+
+    /* Styles for the mobile navigation menu toggle icon */
+    .menu-toggle {
+      font-family: sans-serif; /* Ensure hamburger icon is not affected by Inter font */
+    }
+
+    /* Keyframe animation for slide-in effect for mobile menu */
+    @keyframes slideIn {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .nav-links.open {
+      animation: slideIn 0.3s ease-out forwards; /* Apply slide-in animation */
+    }
+
+    /* Hide scrollbar for aesthetic purposes */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    html {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  </style>
 </head>
-<body>
-    <!-- Theme Toggle -->
-    <button id="theme-toggle">Dark Mode</button>
+<body class="font-sans bg-bg-light text-text-light dark:bg-bg-dark dark:text-text-dark transition-colors duration-300">
+  <!-- Theme Toggle Button -->
+  <button id="theme-toggle" class="fixed top-4 left-4 bg-primary-light text-white px-4 py-2 rounded-md shadow-md font-medium
+                                    hover:bg-nav-hover-light transition-all duration-300 ease-in-out z-50
+                                    dark:bg-primary-dark dark:hover:bg-nav-hover-dark">
+    Dark Mode
+  </button>
 
-    <!-- Navbar -->
-    
-   <nav id="navbar">
-         <div class="nav-container">
-            <div class="logo">Umar</div>
-              <div class="menu-toggle" id="menu-toggle">
-      ☰
-            </div>
-              <ul class="nav-links" id="nav-links">
-                 <li><a href="#welcome-section">Welcome</a></li>
-                 <li><a href="#projects">Projects</a></li>
-                 <li><a href="#contact">Contact</a></li>
-                 <li><a href="https://github.com/ChildishAF" target="_blank">GitHub</a></li>
-              </ul>
-         </div>
-    </nav>
+  <!-- Navbar Section -->
+  <nav id="navbar" class="fixed top-0 w-full bg-nav-light text-white shadow-lg py-4 z-40
+                        dark:bg-nav-dark">
+    <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
+      <div class="logo text-2xl font-bold tracking-wide">Umar</div>
+      <!-- Mobile Menu Toggle Button -->
+      <div class="menu-toggle text-3xl cursor-pointer md:hidden" id="menu-toggle">☰</div>
+      <!-- Navigation Links (Desktop) -->
+      <ul class="nav-links hidden md:flex space-x-6">
+        <li><a href="#welcome-section" class="nav-item">Welcome</a></li>
+        <li><a href="#projects" class="nav-item">Projects</a></li>
+        <li><a href="#contact" class="nav-item">Contact</a></li>
+        <li><a href="https://github.com/ChildishAF" target="_blank" class="nav-item">GitHub</a></li>
+      </ul>
+    </div>
+    <!-- Navigation Links (Mobile - Hidden by default) -->
+    <ul id="nav-links-mobile" class="nav-links md:hidden flex-col w-full absolute top-full left-0 bg-nav-light
+                                      dark:bg-nav-dark hidden shadow-xl border-t border-gray-700">
+      <li><a href="#welcome-section" class="block py-4 text-center hover:bg-nav-hover-light dark:hover:bg-nav-hover-dark transition-colors duration-300">Welcome</a></li>
+      <li><a href="#projects" class="block py-4 text-center hover:bg-nav-hover-light dark:hover:bg-nav-hover-dark transition-colors duration-300">Projects</a></li>
+      <li><a href="#contact" class="block py-4 text-center hover:bg-nav-hover-light dark:hover:bg-nav-hover-dark transition-colors duration-300">Contact</a></li>
+      <li><a href="https://github.com/ChildishAF" target="_blank" class="block py-4 text-center hover:bg-nav-hover-light dark:hover:bg-nav-hover-dark transition-colors duration-300">GitHub</a></li>
+    </ul>
+  </nav>
 
-    </nav>
+  <!-- Welcome Section -->
+  <section id="welcome-section" class="min-h-screen flex flex-col justify-center items-center text-center px-4 py-20
+                                       bg-gradient-to-r from-welcome-gradient-light-start to-welcome-gradient-light-end
+                                       dark:from-welcome-gradient-dark-start dark:to-welcome-gradient-dark-end"
+                                       data-aos="fade-up">
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 text-primary-light dark:text-primary-dark leading-tight">
+      Welcome to My Portfolio
+    </h1>
+    <p class="text-xl sm:text-2xl lg:text-3xl italic opacity-90 text-text-light dark:text-text-dark max-w-2xl">
+      I'm Umar, a passionate Software Engineer
+    </p>
+  </section>
 
-    <!-- Welcome Section -->
-    <section id="welcome-section" data-aos="fade-up">
-        <h1>Welcome to My Portfolio</h1>
-        <p>I'm Umar, a Software Engineer</p>
-    </section>
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 px-4 bg-section-bg-light border-b border-border-light
+                                dark:bg-section-bg-dark dark:border-border-dark" data-aos="fade-up">
+    <h2 class="text-4xl sm:text-5xl font-bold mb-12 text-primary-light dark:text-primary-dark">My Projects</h2>
+    <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <!-- Project Tile 1 -->
+      <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
+                  hover:scale-105 transition-transform duration-300 ease-in-out
+                  dark:bg-project-bg-dark dark:border-border-dark">
+        <img src="https://placehold.co/400x250/E8D2FF/3F1A6A?text=Project+1" alt="Project 1"
+             class="w-full h-48 object-cover rounded-lg mb-4 border border-border-light dark:border-border-dark"/>
+        <h3 class="text-2xl font-semibold mb-2 text-primary-light dark:text-primary-dark">Project 1: Web Application</h3>
+        <p class="text-text-light dark:text-text-dark mb-4 text-base">
+          A brief description of a web application project, highlighting its key features and technologies used.
+          This project demonstrates responsive design and API integration.
+        </p>
+        <a href="https://github.com/yourusername/project1" target="_blank"
+           class="inline-block bg-primary-light text-white px-6 py-3 rounded-md font-bold
+                  hover:bg-nav-hover-light transition-all duration-300 ease-in-out
+                  dark:bg-primary-dark dark:hover:bg-nav-hover-dark">
+          View Project
+        </a>
+      </div>
+      <!-- Project Tile 2 -->
+      <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
+                  hover:scale-105 transition-transform duration-300 ease-in-out
+                  dark:bg-project-bg-dark dark:border-border-dark">
+        <img src="https://placehold.co/400x250/D2FFD2/1A6A1A?text=Project+2" alt="Project 2"
+             class="w-full h-48 object-cover rounded-lg mb-4 border border-border-light dark:border-border-dark"/>
+        <h3 class="text-2xl font-semibold mb-2 text-primary-light dark:text-primary-dark">Project 2: Mobile App</h3>
+        <p class="text-text-light dark:text-text-dark mb-4 text-base">
+          Description of a mobile application project, focusing on user experience and native features.
+          Built with React Native for cross-platform compatibility.
+        </p>
+        <a href="https://github.com/yourusername/project2" target="_blank"
+           class="inline-block bg-primary-light text-white px-6 py-3 rounded-md font-bold
+                  hover:bg-nav-hover-light transition-all duration-300 ease-in-out
+                  dark:bg-primary-dark dark:hover:bg-nav-hover-dark">
+          View Project
+        </a>
+      </div>
+      <!-- Project Tile 3 -->
+      <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
+                  hover:scale-105 transition-transform duration-300 ease-in-out
+                  dark:bg-project-bg-dark dark:border-border-dark">
+        <img src="https://placehold.co/400x250/FFD2E8/6A1A3F?text=Project+3" alt="Project 3"
+             class="w-full h-48 object-cover rounded-lg mb-4 border border-border-light dark:border-border-dark"/>
+        <h3 class="text-2xl font-semibold mb-2 text-primary-light dark:text-primary-dark">Project 3: Data Analysis Tool</h3>
+        <p class="text-text-light dark:text-text-dark mb-4 text-base">
+          An overview of a data analysis tool, showcasing data visualization and machine learning concepts.
+          Developed using Python and relevant libraries.
+        </p>
+        <a href="https://github.com/yourusername/project3" target="_blank"
+           class="inline-block bg-primary-light text-white px-6 py-3 rounded-md font-bold
+                  hover:bg-nav-hover-light transition-all duration-300 ease-in-out
+                  dark:bg-primary-dark dark:hover:bg-nav-hover-dark">
+          View Project
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" data-aos="fade-up">
-        <h2>My Projects</h2>
-        <div class="projects-grid">
-            <div class="project-tile">
-                <img src="https://via.placeholder.com/300" alt="Project 1">
-                <h3>Project 1</h3>
-                <p>A brief description of the project.</p>
-                <a href="https://github.com/yourusername/project1" target="_blank">View Project</a>
-            </div>
-            <div class="project-tile">
-                <img src="https://via.placeholder.com/300" alt="Project 2">
-                <h3>Project 2</h3>
-                <p>A brief description of the project.</p>
-                <a href="https://github.com/yourusername/project2" target="_blank">View Project</a>
-            </div>
-            <div class="project-tile">
-                <img src="https://via.placeholder.com/300" alt="Project 3">
-                <h3>Project 3</h3>
-                <p>A brief description of the project.</p>
-                <a href="https://github.com/yourusername/project3" target="_blank">View Project</a>
-            </div>
-        </div>
-    </section>
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-4 bg-section-bg-light
+                               dark:bg-section-bg-dark" data-aos="fade-up">
+    <h2 class="text-4xl sm:text-5xl font-bold mb-12 text-primary-light dark:text-primary-dark">Contact Me</h2>
+    <form id="contact-form" class="flex flex-col max-w-xl mx-auto p-8 rounded-xl shadow-lg border border-border-light
+                                   bg-form-bg-light dark:bg-form-bg-dark dark:border-border-dark">
+      <input type="text" name="name" placeholder="Your Name" required
+             class="p-4 mb-5 border border-border-light rounded-md text-text-light bg-input-bg-light focus:outline-none
+                    focus:border-primary-light focus:ring-2 focus:ring-primary-light/50
+                    dark:border-border-dark dark:text-text-dark dark:bg-input-bg-dark"/>
+      <input type="email" name="reply_to" placeholder="Your Email" required
+             class="p-4 mb-5 border border-border-light rounded-md text-text-light bg-input-bg-light focus:outline-none
+                    focus:border-primary-light focus:ring-2 focus:ring-primary-light/50
+                    dark:border-border-dark dark:text-text-dark dark:bg-input-bg-dark"/>
+      <textarea name="message" placeholder="Your Message" required rows="6"
+                class="p-4 mb-5 border border-border-light rounded-md text-text-light bg-input-bg-light resize-y focus:outline-none
+                       focus:border-primary-light focus:ring-2 focus:ring-primary-light/50
+                       dark:border-border-dark dark:text-text-dark dark:bg-input-bg-dark"></textarea>
+      <button type="submit"
+              class="bg-primary-light text-white px-8 py-4 rounded-md font-bold text-lg cursor-pointer
+                     hover:bg-nav-hover-light transition-all duration-300 ease-in-out
+                     dark:bg-primary-dark dark:hover:bg-nav-hover-dark">
+        Send Message
+      </button>
+    </form>
+    <p id="form-status" class="mt-6 text-lg font-semibold text-primary-light dark:text-primary-dark"></p>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" data-aos="fade-up">
-        <h2>Contact Me</h2>
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="reply_to" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-     <p id="form-status"></p>
+  <!-- Footer (Optional: you can add a footer here if needed) -->
+  <footer class="bg-nav-light text-white py-8 text-center dark:bg-nav-dark">
+    <p>&copy; 2025 Umar. All rights reserved.</p>
+  </footer>
 
-    </section>
+  <!-- AOS Initialization Script -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS library for scroll animations
+    AOS.init({
+      duration: 1000, // animation duration
+      once: true,     // whether animation should happen only once - while scrolling down
+    });
 
-    <!-- AOS JS -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
-    <script>
-      const toggleBtn = document.getElementById('theme-toggle');
-      toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
+    // Get references to DOM elements
+    const themeToggle = document.getElementById('theme-toggle');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinksMobile = document.getElementById('nav-links-mobile');
+    const navLinksDesktop = document.querySelector('.nav-links.md\\:flex'); // Select desktop nav links
+
+    // Function to set theme
+    function setTheme(isDark) {
+      if (isDark) {
+        document.body.classList.add('dark');
+        themeToggle.textContent = "Light Mode";
+      } else {
+        document.body.classList.remove('dark');
+        themeToggle.textContent = "Dark Mode";
+      }
+      localStorage.setItem('theme', isDark ? 'dark' : 'light'); // Save theme preference
+    }
+
+    // Check for saved theme preference on load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      setTheme(true);
+    } else {
+      setTheme(false); // Default to light if no preference or 'light'
+    }
+
+    // Event listener for theme toggle button
+    themeToggle.addEventListener('click', () => {
+      setTheme(!document.body.classList.contains('dark')); // Toggle current theme
+    });
+
+    // Event listener for mobile menu toggle
+    menuToggle.addEventListener('click', () => {
+      navLinksMobile.classList.toggle('hidden'); // Toggle visibility of mobile nav
+      navLinksMobile.classList.toggle('open');   // Add/remove 'open' class for animation
+    });
+
+    // Event listeners for closing mobile menu when a link is clicked
+    navLinksMobile.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (!navLinksMobile.classList.contains('hidden')) {
+          navLinksMobile.classList.add('hidden'); // Hide mobile nav
+          navLinksMobile.classList.remove('open'); // Remove animation class
+        }
       });
-    </script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-       <script type="text/javascript">
-           (function(){
-               emailjs.init("VY1XFCd7fOjKc2Uhy"); 
-              })();
-    </script>
+    });
 
-    <script>
-         document.getElementById('contact-form').addEventListener('submit', function(e) {
-          e.preventDefault();
+    // Contact Form Submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent default form submission
+      const formStatus = document.getElementById('form-status'); // Get status paragraph
 
-         emailjs.sendForm('service_5rqjzl5', 'template_08bw4xd', this)
-          .then(function() {
-            document.getElementById('form-status').textContent = "Message sent successfully!";
-              }, function(error) {
-            document.getElementById('form-status').textContent = "Failed to send message. Please try again.";
-            console.log('FAILED...', error);
-             });
-         });
-   </script>
-   <script>
-         const menuToggle = document.getElementById('menu-toggle');
-         const navLinks = document.getElementById('nav-links');
+      formStatus.textContent = "Sending message..."; // Show sending status
+      formStatus.classList.remove('text-green-500', 'text-red-500'); // Reset colors
+      formStatus.classList.add('text-primary-light', 'dark:text-primary-dark'); // Default color
 
-         menuToggle.addEventListener('click', () => {
-         navLinks.classList.toggle('open');
-             });
-    </script>
-
-
+      // Send form data using EmailJS
+      
+      emailjs.sendForm('service_5rqjzl5', 'template_jzb6e1x', this)
+        .then(() => {
+          formStatus.textContent = "Message sent successfully! Thank you for reaching out.";
+          formStatus.classList.remove('text-primary-light', 'dark:text-primary-dark');
+          formStatus.classList.add('text-green-500'); // Success color
+          this.reset(); // Clear the form
+        }, (error) => {
+          formStatus.textContent = "Failed to send message. Please try again later.";
+          formStatus.classList.remove('text-primary-light', 'dark:text-primary-dark');
+          formStatus.classList.add('text-red-500'); // Error color
+          console.error('EmailJS FAILED:', error); // Log error for debugging
+        });
+    });
+  </script>
 </body>
 </html>
