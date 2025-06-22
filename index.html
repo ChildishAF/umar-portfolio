@@ -1,14 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Umar's Portfolio</title>
-  <!-- Tailwind CSS CDN for modern styling -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- AOS for scroll animations -->
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
-  <!-- EmailJS for contact form functionality -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     // Initialize EmailJS with your user ID
@@ -97,18 +95,13 @@
   </style>
 </head>
 <body class="font-sans bg-bg-light text-text-light dark:bg-bg-dark dark:text-text-dark transition-colors duration-300">
-  <!-- Theme Toggle Button -->
- 
 
-  <!-- Navbar Section -->
   <nav id="navbar" class="fixed top-0 w-full bg-nav-light text-white shadow-lg py-4 z-40
                         dark:bg-nav-dark">
     <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
       <div class="logo text-2xl md:text-3xl font-bold tracking-wide">@mukwambau
       </div>
-      <!-- Mobile Menu Toggle Button -->
       <div class="menu-toggle text-3xl cursor-pointer md:hidden" id="menu-toggle">☰</div>
-      <!-- Navigation Links (Desktop) -->
       <ul class="nav-links hidden md:flex space-x-6 lg:space-x-8">
         <li><a href="#welcome-section" class="nav-item">Welcome</a></li>
         <li><a href="#projects" class="nav-item">Projects</a></li>
@@ -116,7 +109,6 @@
         <li><a href="https://github.com/ChildishAF" target="_blank" class="nav-item">GitHub</a></li>
       </ul>
     </div>
-    <!-- Navigation Links (Mobile - Hidden by default) -->
     <ul id="nav-links-mobile" class="nav-links md:hidden flex-col w-full absolute top-full left-0 bg-nav-light
                                       dark:bg-nav-dark hidden shadow-xl border-t border-gray-700">
       <li><a href="#welcome-section" class="block py-4 text-center hover:bg-nav-hover-light dark:hover:bg-nav-hover-dark transition-colors duration-300">Welcome</a></li>
@@ -126,7 +118,6 @@
     </ul>
   </nav>
 
-  <!-- Welcome Section -->
   <section id="welcome-section" class="min-h-screen flex flex-col justify-center items-center text-center px-4 py-20
                                        bg-gradient-to-r from-welcome-gradient-light-start to-welcome-gradient-light-end
                                        dark:from-welcome-gradient-dark-start dark:to-welcome-gradient-dark-end"
@@ -139,12 +130,10 @@
     </p>
   </section>
 
-  <!-- Projects Section -->
   <section id="projects" class="py-20 px-4 bg-section-bg-light border-b border-border-light
                                 dark:bg-section-bg-dark dark:border-border-dark" data-aos="fade-up">
     <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-12 text-primary-light dark:text-primary-dark text-center">My Projects</h2>
     <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl xl:max-w-7xl mx-auto">
-      <!-- Project Tile 1 -->
       <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
                   hover:scale-105 transition-transform duration-300 ease-in-out
                   dark:bg-project-bg-dark dark:border-border-dark">
@@ -162,7 +151,6 @@
           View Project
         </a>
       </div>
-      <!-- Project Tile 2 -->
       <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
                   hover:scale-105 transition-transform duration-300 ease-in-out
                   dark:bg-project-bg-dark dark:border-border-dark">
@@ -179,7 +167,6 @@
           View Project
         </a>
       </div>
-      <!-- Project Tile 3 -->
       <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
                   hover:scale-105 transition-transform duration-300 ease-in-out
                   dark:bg-project-bg-dark dark:border-border-dark">
@@ -200,7 +187,6 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
   <section id="contact" class="py-20 px-4 bg-section-bg-light
                                dark:bg-section-bg-dark" data-aos="fade-up">
     <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-12 text-primary-light dark:text-primary-dark text-center">Contact Me</h2>
@@ -228,12 +214,10 @@
     <p id="form-status" class="mt-6 text-lg font-semibold text-primary-light dark:text-primary-dark"></p>
   </section>
 
-  <!-- Footer (Optional: you can add a footer here if needed) -->
   <footer class="bg-nav-light text-white py-8 text-center dark:bg-nav-dark">
     <p>&copy; 2025 Umar. All rights reserved.</p>
   </footer>
 
-  <!-- AOS Initialization Script -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     // Initialize AOS library for scroll animations
@@ -243,35 +227,9 @@
     });
 
     // Get references to DOM elements
-    const themeToggle = document.getElementById('theme-toggle');
     const menuToggle = document.getElementById('menu-toggle');
     const navLinksMobile = document.getElementById('nav-links-mobile');
     const navLinksDesktop = document.querySelector('.nav-links.md\\:flex'); // Select desktop nav links
-
-    // Function to set theme
-    function setTheme(isDark) {
-      if (isDark) {
-        document.body.classList.add('dark');
-        themeToggle.textContent = "Light Mode";
-      } else {
-        document.body.classList.remove('dark');
-        themeToggle.textContent = "Dark Mode";
-      }
-      localStorage.setItem('theme', isDark ? 'dark' : 'light'); // Save theme preference
-    }
-
-    // Check for saved theme preference on load
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      setTheme(true);
-    } else {
-      setTheme(false); // Default to light if no preference or 'light'
-    }
-
-    // Event listener for theme toggle button
-    themeToggle.addEventListener('click', () => {
-      setTheme(!document.body.classList.contains('dark')); // Toggle current theme
-    });
 
     // Event listener for mobile menu toggle
     menuToggle.addEventListener('click', () => {
