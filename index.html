@@ -11,7 +11,7 @@
   <script>
     // Initialize EmailJS with your user ID
     (function() {
-      // IMPORTANT: Replace "VY1XFCd7fOjKc2Uhy" with your actual EmailJS User ID
+      
       emailjs.init("VY1XFCd7fOjKc2Uhy");
     })();
 
@@ -257,8 +257,8 @@
       formStatus.classList.add('text-primary-light', 'dark:text-primary-dark'); // Default color
 
       // Send form data using EmailJS
-      // IMPORTANT: Replace "YOUR_EMAILJS_TEMPLATE_ID" with your actual EmailJS Template ID
-      emailjs.sendForm('service_5rqjzl5', 'YOUR_EMAILJS_TEMPLATE_ID', this)
+      
+      emailjs.sendForm('service_5rqjzl5', 'template_v8e6ypv', this)
         .then(() => {
           formStatus.textContent = "Message sent successfully! Thank you for reaching out.";
           formStatus.classList.remove('text-primary-light', 'dark:text-primary-dark');
