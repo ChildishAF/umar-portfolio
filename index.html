@@ -8,6 +8,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/rellax@1.12.1/rellax.min.js"></script>
+
   <script>
     // Initialize EmailJS with your user ID
     (function() {
@@ -52,6 +54,16 @@
         }
       }
     }
+
+
+    new Rellax('[data-rellax-speed]', {
+       center: true,
+       wrapper: null,
+       round: true,
+       vertical: true,
+       horizontal: false
+    });
+
   </script>
   <style>
     /* Custom styles for theme-toggle button to handle fixed position and z-index */
@@ -123,10 +135,10 @@
     </ul>
   </nav>
 
-  <section id="welcome-section" class="min-h-screen flex flex-col justify-center items-center text-center px-4 py-20
+  <section id="welcome-section" class="main-section min-h-screen flex flex-col justify-center items-center text-center px-4 py-20
                                        bg-gradient-to-r from-welcome-gradient-light-start to-welcome-gradient-light-end
                                        dark:from-welcome-gradient-dark-start dark:to-welcome-gradient-dark-end"
-                                       data-aos="fade-up">
+                                       data-aos="fade-up" data-rellax-speed="-2">
     <img src="Assets\umar.jpeg" alt="Umar Mukwamba Photo"
      class="w-40 h-40 rounded-full mb-6 border-4 border-primary-light dark:border-primary-dark shadow-lg object-cover"/>
 
@@ -137,7 +149,7 @@
       I'm Umar Mukwamba, a passionate Software Engineer solving the world's problems one software solution at a time
     </p>
   </section>
-  <section id="tech-stack" class="py-20 px-4 bg-section-bg-light border-t border-border-light
+  <section id="tech-stack" class="main-section  py-20 px-4 bg-section-bg-light border-t border-border-light
                                  dark:bg-section-bg-dark dark:border-border-dark" data-aos="fade-up">
   <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-12 text-primary-light dark:text-primary-dark text-center">
     Working with...
@@ -242,13 +254,11 @@
 
 
 
-  <section id="projects" class="py-20 px-4 bg-section-bg-light border-b border-border-light
+  <section id="projects" class="main-section py-20 px-4 bg-section-bg-light border-b border-border-light
                                 dark:bg-section-bg-dark dark:border-border-dark" data-aos="fade-up">
     <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-12 text-primary-light dark:text-primary-dark text-center">My Projects</h2>
     <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl xl:max-w-7xl mx-auto">
-      <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
-                  hover:scale-105 transition-transform duration-300 ease-in-out
-                  dark:bg-project-bg-dark dark:border-border-dark">
+      <div class="project-tile bg-white/30 backdrop-blur-lg p-6 rounded-xl shadow-lg border border-border-light hover:scale-105 hover:opacity-90 transition-all duration-500 ease-in-out dark:bg-white/10">
         <img src="https://placehold.co/400x250/E8D2FF/3F1A6A?text=SMART+QR" alt="Project 1"
              class="w-full h-48 object-cover rounded-lg mb-4 border border-border-light dark:border-border-dark"/>
         <h3 class="text-2xl font-semibold mb-2 text-primary-light dark:text-primary-dark">Project 1: SMART QR</h3>
@@ -263,9 +273,7 @@
           View Project
         </a>
       </div>
-      <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
-                  hover:scale-105 transition-transform duration-300 ease-in-out
-                  dark:bg-project-bg-dark dark:border-border-dark">
+      <div class="project-tile bg-white/30 backdrop-blur-lg p-6 rounded-xl shadow-lg border border-border-light hover:scale-105 hover:opacity-90 transition-all duration-500 ease-in-out dark:bg-white/10">
         <img src="https://placehold.co/400x250/D2FFD2/1A6A1A?text=SMALL+FILE" alt="Project 2"
              class="w-full h-48 object-cover rounded-lg mb-4 border border-border-light dark:border-border-dark"/>
         <h3 class="text-2xl font-semibold mb-2 text-primary-light dark:text-primary-dark">Project 2: SMALL FILE</h3>
@@ -279,9 +287,7 @@
           View Project
         </a>
       </div>
-      <div class="project-tile bg-project-bg-light p-6 rounded-xl shadow-lg border border-border-light
-                  hover:scale-105 transition-transform duration-300 ease-in-out
-                  dark:bg-project-bg-dark dark:border-border-dark">
+      <div class="project-tile bg-white/30 backdrop-blur-lg p-6 rounded-xl shadow-lg border border-border-light hover:scale-105 hover:opacity-90 transition-all duration-500 ease-in-out dark:bg-white/10">
         <img src="https://placehold.co/400x250/FFD2E8/6A1A3F?text=Data+Tool" alt="Project 3"
              class="w-full h-48 object-cover rounded-lg mb-4 border border-border-light dark:border-border-dark"/>
         <h3 class="text-2xl font-semibold mb-2 text-primary-light dark:text-primary-dark">Project 3: Data Analysis Tool</h3>
@@ -299,7 +305,7 @@
     </div>
   </section>
 
-  <section id="contact" class="py-20 px-4 bg-section-bg-light
+  <section id="contact" class="main-section py-20 px-4 bg-section-bg-light
                                dark:bg-section-bg-dark" data-aos="fade-up">
     <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-12 text-primary-light dark:text-primary-dark text-center">Contact Me</h2>
     <form id="contact-form" class="flex flex-col max-w-xl lg:max-w-2xl mx-auto p-8 rounded-xl shadow-lg border border-border-light
@@ -383,6 +389,27 @@
           console.error('EmailJS FAILED:', error); // Log error for debugging
         });
     });
+
+    const sections = document.querySelectorAll('.main-section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+       let current = '';
+       sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100; // offset for navbar height
+            if (scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+         }
+       });
+
+     navLinks.forEach(link => {
+       link.classList.remove('text-yellow-400'); // active link color
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('text-yellow-400'); // highlight current
+       }
+    });
+  });
+
   </script>
 </body>
 </html>
